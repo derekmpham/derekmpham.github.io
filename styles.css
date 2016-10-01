@@ -1,3 +1,62 @@
 body {
 	background: #FFFACD
 }
+
+section {
+	font-family: Garamond;
+	border: 1px solid black;
+	padding: 15px;
+}
+
+figure {
+	margin: auto;
+}
+
+footer {
+	text-align: center;
+}
+
+.More-laker-info {
+	background-image: url("images/kb_background.jpg");
+	color: white;
+}
+
+.fav {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#Kobe {
+	color: blue;
+	font-weight: bold;
+}
+
+.lakeshow {
+	color: yellow;
+	font-weight: bold;
+}
+
+a:visited {
+    color: aqua;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    background: #f5f5f5;
+    font-family: Arial;
+  }
+  section {
+  	background: white;
+  	font-family: Helvetica;
+  }
+  #Kobe {
+  	color: red;
+  }
+  .More-laker-info {
+  	background: gray;
+  	text-align: center;
+  }
+  #wikilink {
+  	color: blue;
+  }
+}
