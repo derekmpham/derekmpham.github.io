@@ -1,60 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<title>My Team: LA Lakers</title>
+	<title></title>
 </head>
 <body>
-	<h1>My Team</h1>
-		<figure><img src="images/laker_img1_devboot.jpg" alt="laker logo" /></figure>
-		<p>I like a couple of sports teams, but my <span class="fav">favorite</span> team would have to be the Los Angeles Lakers.</p>
-	<h2>Why I like the Lakers</h2>
-		<p>I like the Lakers, because I grew up in southern California, and the Lakers are historically the most successful sports team in the area.</p>
-	<section>
-	<h3>Some famous Lakers</h3>
-		<ul>
-			<li>Magic Johnson</li>
-			<li>Kareem Abdul-Jabbar</li>
-			<li>Wilt Chamberlain</li>
-			<li>Shaquille O'Neal</li>
-			<li>and of course, <span id="Kobe">Kobe Bryant</span></li>
-		</ul>
-	<h4>Top 5 NBA Teams in Championships</h4>
-		<table border=1>
-  			<tr>
-    			<th>Team</th>
-    			<th>Number of Championships</th>
-  			</tr>
-  			<tr>
-    			<td>Boston Celtics</td>
-    			<td>17</td>
-  			</tr>
-  			<tr>
-    			<td>*Los Angeles Lakers</td>
-    			<td>16</td>
-  			</tr>
-  			<tr>
-    			<td>Chicago Bulls</td>
-    			<td>6</td>
-  			</tr>
-  			<tr>
-    			<td>San Antonio Spurs</td>
-    			<td>5</td>
-  			</tr>
-  			<tr>
-    			<td>Golden State Warriors</td>
-    			<td>4</td>
-  			</tr>
-		</table>
-	<p>For more information on the Los Angeles Lakers, check out the team's <a href="https://en.wikipedia.org/wiki/Los_Angeles_Lakers"><span id="wikilink">Wikipedia</span></a> page.</p>
-	</section>
-	<section class="More-laker-info">
-		<p>Another website about the Lakers is <a href="http://www.lakersnation.com/"><span class="lakeshow">Lakers Nation</span></a>, a blog site about the latest news on the Lakers.</p>
-		<figure><img src="images/laker_img3_devboot.jpg" alt="laker nation logo" /></figure>
-		<p>What makes this site good is its extensive use of different images and pages. Lakers Nation uses a different image to complement each and every blog. The extensive use of images creates a visually pleasing experience for the user. Moreover, the site directs the user to a new page if the user wants to read further on a specific blog--the use of an entirely new page for every blog creates a more comfortable user experience.</p>
-	</section>
-	<footer>
-		<p>*Note: This is a fan-made website and is not officially sponsored by the Lakers organization.</p>
-	</footer>
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="models/treehouse_logo.js"></script>
+<script>
+	// set up the scene, camera, and renderer as global variables
+	var scene, camera, renderer;
+
+	init();
+	animate();
+
+	// set up the scene
+	function init() {
+		// create the scene and set the scene size
+		scene = new THREE.Scene();
+		var WIDTH = window.innerWidth,
+			HEIGHT = window.innerHeight;
+
+		// create a renderer and add it to the DOM
+		renderer = new THREE.WebGLRenderer({antialias:true});
+		renderer.setSize(WIDTH, HEIGHT);
+		document.body.appendChild(renderer.domElement);
+
+		// create a camera, zoom it out from the model a bit, and add it to the scene
+		camera = new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 0.1, 20000);
+		camera.position.set(0, 6, 0);
+		scene.add(camera);
+		
+		// create an event listener that resizes the renderer with the browser window
+		window.addEventListener('resize', function() {
+			var WIDTH = window.innerWidth,
+				HEIGHT = window.innerHeight;
+			renderer.setSize(WIDTH, HEIGHT);
+			camera.aspect = WIDTH/HEIGHT;
+			camera.updateProjectionMatrix();
+		});
+
+		// set the background color of the scene
+		renderer.setClearColor(0x333F47, 1);
+
+		// create a light, set its position, and add it to the scene
+		var light = new THREE.PointLight(0xffffff);
+		light.position.set(-100, 200, 100);
+		scene.add(light);
+
+		// load in the mesh and add it to the scene
+		var loader = new THREE.JSONLoader();
+		loader.load("models/treehouse_logo.js", function(geometry) {
+			var material = new THREE.MeshLambertMaterial({color: 0x55B663});
+			mesh = new THREE.Mesh(geometry, material);
+			scene.add(mesh);
+		});
+		//var material = new THREE.MeshLambertMaterial({color: 0x55B663});
+		//mesh = new THREE.Mesh(LOGO_MODEL, material);
+		//mesh = LOGO_MODEL;
+		//mesh.material = material;
+		//scene.add(mesh);
+
+		// add OrbitControls so that we can pan around with the mouse
+		controls = new THREE.OrbitControls(camera, renderer.domElement);
+	}
+
+	// renders the scene and updates the render as needed
+	function animate() {
+		requestAnimationFrame(animate);
+
+		// render the scene
+		renderer.render(scene, camera);
+		controls.update();
+	}
+</script>
 </body>
 </html>
