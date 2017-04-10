@@ -10,6 +10,8 @@
 <script>
 	// set up global variables
 	var scene, camera, renderer, controls, effect, skyBox, otherArray, materialArray, textMaterial2, speedStore;
+	// set up 2D mouse vector object and INTERSECTED variables
+	var mouse = new THREE.Vector2(), INTERSECTED;
 
 	init();
 	animate();
