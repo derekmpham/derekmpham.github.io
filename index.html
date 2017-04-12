@@ -40,9 +40,14 @@
 			// create scene
 			scene = new THREE.Scene();
 
-			// create camera and add it to scene
-			camera = new THREE.PerspectiveCamera(70, WIDTH/HEIGHT, 1, 100000);
-			scene.add(camera);
+			// create camera
+			camera = new THREE.PerspectiveCamera(90, window.innerWidth/window.innerHeight, 0.1, 100);
+			camera.position.z = 0.1
+
+			// add orbit controls so that we can pan around
+			controls = new THREE.OrbitControls(camera);
+			controls.enableZoom = false;
+			controls.enablePan = false;
 
 			// load cube textures
 			var urlPrefix = "models/";
