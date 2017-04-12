@@ -28,16 +28,17 @@
 
 		// set up scene
 		function init() {
-			// test if webgl is supported
-			if (!Detector.webgl) {
-				Detector.addGetWebGLMessage();
-			}
+			
+			var container = document.getElementById('container');
 
-			// create scene and set scene size
+			// create renderer, make responsive, and add to DOM
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			container.appendChild(renderer.domElement);
+
+			// create scene
 			scene = new THREE.Scene();
-
-			var WIDTH = window.innerWidth,
-				HEIGHT = window.innerHeight;
 
 			// create camera and add it to scene
 			camera = new THREE.PerspectiveCamera(70, WIDTH/HEIGHT, 1, 100000);
