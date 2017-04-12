@@ -49,8 +49,16 @@
 			controls.enableZoom = false;
 			controls.enablePan = false;
 
-			// load cube textures
+			// load cube textures (skybox)
 			var textures = getTexturesFromAtlasFile("models/sun_temple_stripe.jpg", 6);
+
+			// empty array to be loaded into
+			var materials = [];
+
+			// create mesh material object for each part of skybox and push into materials array
+			for (var i = 0; i < 6; i++) {
+				materials.push(new THREE.MeshBasicMaterial({map: textures[i]}));
+			}
 
 			// load cube textures
 			var urlPrefix = "models/";
