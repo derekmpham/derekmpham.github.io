@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Derek Pham</title>
+	<meta charset="UTF-8">
+	<title>Star Wars Rebellion Blockade</title>
 </head>
 <body>
 	<script src="js/three.min.js"></script>
@@ -9,7 +10,7 @@
 	<script src="js/Detector.js"></script>
 	<script>
 		// set up global variables
-		var scene, camera, renderer, skyboxMesh;
+		var scene, camera, renderer, skyboxMesh, textureCube;
 
 		init();
 		animate();
@@ -23,61 +24,85 @@
 
 			// create scene and set scene size
 			scene = new THREE.Scene();
+
 			var WIDTH = window.innerWidth,
-			HEIGHT = window.innerHeight;
+				HEIGHT = window.innerHeight;
+
+			// create camera and add it to scene
+			camera = new THREE.PerspectiveCamera(70, WIDTH/HEIGHT, 1, 100000);
+			scene.add(camera);
 
 			// load cube textures
 			var urlPrefix = "models/";
-			var urls = [urlPrefix + "front.png", urlPrefix + "back.png", urlPrefix + "left.png", urlPrefix + "right.png", urlPrefix + "up.png", urlPrefix + "down.png"];
-			var textureCube = THREE.CubeTextureLoader(urls);
+			var urls = [urlPrefix + "front.jpg", urlPrefix + "back.jpg", urlPrefix + "left.jpg", urlPrefix + "right.jpg", urlPrefix + "up.jpg", urlPrefix + "down.jpg"];
+			var loader = new THREE.CubeTextureLoader();
+			textureCube = loader.load(urls, function (cubeTexture) {
+				textureCube.format = THREE.RGBFormat;	
+				// initialize shader
 
-			// initialize shader
-			var shader = THREE.ShaderLib["cube"];
-			var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
-			uniforms['tCube'].texture = textureCube;
-			var material = new THREE.ShaderMaterial({
-				fragmentShader: shader.fragmentShader,
-				vertexShader: shader.vertexShader,
-				uniforms: uniforms
-			});
+				var shader = THREE.ShaderLib["cube"];
+				//var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
+				shader.uniforms['tCube'].texture = textureCube;
+				//shader.uniforms = uniforms;
+				var material = new THREE.ShaderMaterial({
+					fragmentShader: shader.fragmentShader,
+					vertexShader: shader.vertexShader,
+					uniforms: shader.uniforms,
+					depthWrite: false,
+			        side: THREE.BackSide
+				});
 
-			// create cube
-			// build skybox mesh
-			skyboxMesh = new THREE.Mesh(new THREE.CubeGeometry(100000, 100000, 100000, 1, 1, 1, null, true), material);
-			// add cube to scene
-			scene.add(skyboxMesh);
+				// create cube
+				// build skybox mesh
+				//skyboxMesh = new THREE.Mesh(new THREE.BoxGeometry(100000, 100000, 100000), material);
+				skyboxMesh = new THREE.Mesh(new THREE.CubeGeometry( 100000, 100000, 100000, 1, 1, 1, null, true ), material );
+				// add cube to scene
+				//skyboxMesh.position.set(0, 200, 0);
+				scene.add(skyboxMesh);
+
+				//skyboxMesh.position.copy(camera.position);
+			}, function () { console.log("loading...");}, function(e) {console.log(e);});
+
 
 			// create renderer and add to DOM
-			renderer = new THREE.WebGLRenderer({antialias:true});
-			renderer.setSize(WIDTH, HEIGHT);
+			renderer = new THREE.WebGLRenderer();
+			//renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+			//renderer.setClearColor( 0x00ff00, 0.5);
+			renderer.setSize(window.innerWidth, window.innerHeight);
 			document.body.appendChild(renderer.domElement);
 
-			// create camera and add it to scene
-			camera = new THREE.PerspectiveCamera(45, WIDTH/HEIGHT, 1, 100000);
-			scene.add(camera);
-
 			// create event listener that resizes renderer with browser window
-			window.addEventListener('resize', function() {
-				var WIDTH = window.innerWidth,
-				HEIGHT = window.innerHeight;
-				renderer.setSize(WIDTH, HEIGHT);
-				camera.aspect = WIDTH/HEIGHT;
-				camera.updateProjectionMatrix();
-			});
+			//window.addEventListener('resize', function() {
+			//	var WIDTH = window.innerWidth,
+			//		HEIGHT = window.innerHeight;
+			//	renderer.setSize(WIDTH, HEIGHT);
+			//	camera.aspect = WIDTH/HEIGHT;
+			//	camera.updateProjectionMatrix();
+			//});
+
+			//scene.background = new THREE.Color( 0xffffff );
 
 			// add orbit controls so that we can pan around with mouse
-			controls = new THREE.OrbitControls(camera, renderer.domElement);
+			//controls = new THREE.OrbitControls(camera, renderer.domElement);
 		}
 
 		// renders scene and updates render as needed
 		function animate() {
+			render();
 			requestAnimationFrame(animate);
 
 			// render scene
-			renderer.render(scene, camera);
-			controls.update();
+			// renderer.render(scene, camera);
+			//controls.update();
+		}
+
+		function render() {
+			var timer = - new Date().getTime() * 0.0002; 
+			camera.position.x = 1000 * Math.cos( timer );
+			camera.position.z = 1000 * Math.sin( timer );
+			renderer.render( scene, camera );
+			//console.log("rendering");
 		}
 	</script>
-	<a style="color:white;position:fixed;bottom:20px; left:50%" href="https://www.derekmpham.com/">ENTER</a>
 </body>
 </html>
