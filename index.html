@@ -44,10 +44,13 @@
 			camera = new THREE.PerspectiveCamera(90, window.innerWidth/window.innerHeight, 0.1, 100);
 			camera.position.z = 0.1
 
-			// add orbit controls so that we can pan around
+			// add orbit controls so that we can look around
 			controls = new THREE.OrbitControls(camera);
 			controls.enableZoom = false;
 			controls.enablePan = false;
+
+			// load cube textures
+			var textures = getTexturesFromAtlasFile("models/sun_temple_stripe.jpg", 6);
 
 			// load cube textures
 			var urlPrefix = "models/";
