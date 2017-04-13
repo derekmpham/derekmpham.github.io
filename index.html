@@ -49,13 +49,13 @@
 			controls.enableZoom = false;
 			controls.enablePan = false;
 
-			// load cube textures (sides of cube)
+			// load cube textures (from sides of cube)
 			var textures = getTexturesFromAtlasFile("models/sun_temple_stripe.jpg", 6);
 
 			// empty array to be loaded into
 			var materials = [];
 
-			// create mesh material object for each side of cube and push into materials array
+			// create mesh material object for texture of each side of cube and push into materials array
 			for (var i = 0; i < 6; i++) {
 				materials.push(new THREE.MeshBasicMaterial({map: textures[i]}));
 			}
@@ -68,6 +68,18 @@
 			scene.add(skyBox);
 			// enable resizing
 			window.addEventListener('resize', onWindowResize, false);
+		}
+
+		// define getTexturesFromAtlasFile function (used in init function)
+		function getTexturesFromAtlasFile(atlasImgUrl, tilesNum) {
+
+			// empty array to be loaded into
+			var textures = [];
+
+			// create texture object for each side of cube (tile)
+			for (var i = 0; i < tilesNum; i++) {
+				textures[i] = new THREE.Texture();
+			}
 		}
 	</script>
 		<a style="position:fixed;bottom:45px;text-align:center;color:#ffffff;font-family:Monospace;font-size:35px;width:100%;" href="https://www.linkedin.com/in/derekmpham/">ENTER</a>
