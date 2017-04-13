@@ -80,6 +80,33 @@
 			for (var i = 0; i < tilesNum; i++) {
 				textures[i] = new THREE.Texture();
 			}
+
+			// create image object
+			var imgObj = new Image();
+
+			// once image object has been loaded, "fill in" image object with textures (filled with tiles)
+			imgObj.onload = function() {
+
+				// set local variables
+				var canvas, context;
+				var tileWidth = imgObj.height;
+
+				for (var i = 0; i < textures.length; i++) {
+					// specify what canvas is
+					canvas = document.createElement('canvas');
+					// specify context using canvas
+					context = canvas.getContext('2d');
+					canvas.height = tileWidth;
+					canvas.width = tileWidth;
+					// draw image using context
+					context.drawImage(imgObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth);
+					// put tile on canvas
+					textures[i].image = canvas;
+					textures[i].needsUpdate = true;
+				}
+
+
+			}
 		}
 	</script>
 		<a style="position:fixed;bottom:45px;text-align:center;color:#ffffff;font-family:Monospace;font-size:35px;width:100%;" href="https://www.linkedin.com/in/derekmpham/">ENTER</a>
