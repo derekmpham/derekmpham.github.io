@@ -121,6 +121,13 @@
 			// update renderer size
 			renderer.setSize(window.innerWidth, window.innerHeight);
 		}
+
+		// render scene and update render as needed
+		function animate() {
+			controls.update();
+			renderer.render(scene, camera);
+			requestAnimationFrame(animate);
+		}
 	</script>
 		<a style="position:fixed;bottom:45px;text-align:center;color:#ffffff;font-family:Monospace;font-size:35px;width:100%;" href="https://www.linkedin.com/in/derekmpham/">ENTER</a>
 </body>
