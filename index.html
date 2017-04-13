@@ -84,7 +84,7 @@
 			// create image object
 			var imgObj = new Image();
 
-			// once image object has been loaded, "fill in" image object with textures (filled with tiles)
+			// once image object has been loaded, "fill in" image object with textures
 			imgObj.onload = function() {
 
 				// set local variables
@@ -100,13 +100,26 @@
 					canvas.width = tileWidth;
 					// draw image using context
 					context.drawImage(imgObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth);
-					// put tile on canvas
+					// put each texture (of each tile) on canvas
 					textures[i].image = canvas;
 					textures[i].needsUpdate = true;
 				}
+			};
 
+			// enable access to atlas image (in another file)
+			imgObj.src = atlasImgUrl;
+			return textures;
+		}
 
-			}
+		// define onWindowResize function (used in init function)
+		function onWindowResize() {
+
+			// update camera's aspect ratio
+			camera.aspect = window.innerWidth/window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			// update renderer size
+			renderer.setSize(window.innerWidth, window.innerHeight);
 		}
 	</script>
 		<a style="position:fixed;bottom:45px;text-align:center;color:#ffffff;font-family:Monospace;font-size:35px;width:100%;" href="https://www.linkedin.com/in/derekmpham/">ENTER</a>
