@@ -15,7 +15,8 @@
 </head>
 <body>
 	<div id="container"></div>
-	<script src="js/three.min.js"></script>
+	<!-- <script src="js/three.min.js"></script> -->
+	<script src="js/three.js"></script>
 	<script src="js/OrbitControls.js"></script>
 	<script>
 		// set up global variables
@@ -42,7 +43,7 @@
 
 			// create camera
 			camera = new THREE.PerspectiveCamera(90, window.innerWidth/window.innerHeight, 0.1, 100);
-			camera.position.z = 0.1
+			camera.position.z = 0.01;
 
 			// add orbit controls so that we can look around
 			controls = new THREE.OrbitControls(camera);
