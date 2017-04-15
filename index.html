@@ -76,6 +76,8 @@
 			scene = new THREE.Scene();
 			scene.background = textureCube;
 
+			// add lights to scene
+			scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
 		}
 
 	</script>
