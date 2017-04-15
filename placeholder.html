@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Star Wars Rebellion Blockade</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<style>
+		html, body {
+			background-color: #000;
+			margin: 0px;
+			padding: 0px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<script src="js/three.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script>
+		// set up global variables
+		var camera, controls;
+		var renderer;
+		var scene;
+
+		init();
+		animate();
+
+		// set up scene
+		function init() {
+			
+			var container = document.getElementById('container');
+
+			// create renderer, make responsive, and add to DOM
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			container.appendChild(renderer.domElement);
+
+			// create scene
+			scene = new THREE.Scene();
+
+			// create camera
+			camera = new THREE.PerspectiveCamera(90, window.innerWidth/window.innerHeight, 0.1, 100);
+			camera.position.z = 0.01;
+
+			// add orbit controls so that we can look around
+			controls = new THREE.OrbitControls(camera);
+			controls.enableZoom = false;
+			controls.enablePan = false;
+
+			// load cube textures (from sides of cube)
+			var textures = getTexturesFromAtlasFile("models/space_atlas.jpg", 6);
+
+			// empty array to be loaded into
+			var materials = [];
+
+			// create mesh material object for texture of each side of cube and push into materials array
+			for (var i = 0; i < 6; i++) {
+				materials.push(new THREE.MeshBasicMaterial({map: textures[i]}));
+			}
+
+			// create mesh object (skybox) using cube object and materials (sides of cube)
+			var skyBox = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1), materials);
+			// enable position, rotation, and scale of skybox to be updated with 4x4 matrix
+			skyBox.applyMatrix(new THREE.Matrix4().makeScale(1, 1, -1));
+			// add skybox to scene
+			scene.add(skyBox);
+			// enable resizing
+			window.addEventListener('resize', onWindowResize, false);
+		}
+
+		// define getTexturesFromAtlasFile function (used in init function)
+		function getTexturesFromAtlasFile(atlasImgUrl, tilesNum) {
+
+			// empty array to be loaded into
+			var textures = [];
+
+			// create texture object for each side of cube (tile)
+			for (var i = 0; i < tilesNum; i++) {
+				textures[i] = new THREE.Texture();
+			}
+
+			// create image object
+			var imgObj = new Image();
+
+			// once image object has been loaded, "fill in" image object with textures
+			imgObj.onload = function() {
+
+				// set local variables
+				var canvas, context;
+				var tileWidth = imgObj.height;
+
+				for (var i = 0; i < textures.length; i++) {
+					// specify what canvas is
+					canvas = document.createElement('canvas');
+					// specify context using canvas
+					context = canvas.getContext('2d');
+					canvas.height = tileWidth;
+					canvas.width = tileWidth;
+					// draw image using context
+					context.drawImage(imgObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth);
+					// put each texture (of each tile) on canvas
+					textures[i].image = canvas;
+					textures[i].needsUpdate = true;
+				}
+			};
+
+			// enable access to atlas image (in another file)
+			imgObj.src = atlasImgUrl;
+			return textures;
+		}
+
+		// define onWindowResize function (used in init function)
+		function onWindowResize() {
+
+			// update camera's aspect ratio
+			camera.aspect = window.innerWidth/window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			// update renderer size
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		}
+
+		// render scene and update render as needed
+		function animate() {
+			controls.update();
+			renderer.render(scene, camera);
+			requestAnimationFrame(animate);
+		}
+	</script>
+		<a style="position:fixed;bottom:45px;text-align:center;color:#ffffff;font-family:Monospace;font-size:35px;width:100%;" href="https://www.linkedin.com/in/derekmpham/">ENTER</a>
+</body>
+</html>
