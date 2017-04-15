@@ -54,6 +54,13 @@
 
 			// add TrackballControls to enable camera rotation using mouse
 			controls = new THREE.TrackballControls(camera);
+
+			// create renderer, set background color, make responsive, and add to DOM
+			renderer = new THREE.WebGLRenderer({antialias: true});
+			renderer.setClearColor(0x202020);
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			container.appendChild(renderer.domElement);
 		}
 
 	</script>
