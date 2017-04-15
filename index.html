@@ -81,6 +81,36 @@
 
 			// path to gun object models
 			var path = 'models/obj/gun/';
+
+			var loader = new THREE.OBJLoader();
+			var material = new THREE.MeshStandardMaterial();
+			// load main gun object and incorporate other gun models ("maps") as a function
+			loader.load(path + 'gun.obj', function (group) {
+				var loader = new THREE.TextureLoader();
+
+				material.roughness = 1;
+				material.metalness = 1;
+
+				material.map = loader.load(path + 'gun_A.jpg');
+
+				material.metalnessMap = material.roughnessMap = loader.load(path + 'gun_RM.jpg');
+				material.normalMap = loader.load(path + 'gun_N.jpg');
+
+				material.map.wrapS = THREE.RepeatWrapping;
+				material.roughnessMap.wrapS = THREE.RepeatWrapping;
+				material.metalnessMap.wrapS = THREE.RepeatWrapping;
+				material.normalMap.wrapS = THREE.RepeatWrapping;
+
+				group.traverse(function (child) {
+					if (child instanceof THREE.Mesh) {
+						child.material = material;
+					}
+				});
+
+				group.position.x = -0.45;
+				group.rotation.y = -Math.PI/2;
+				scene.add(group);
+			});
 		}
 
 	</script>
