@@ -67,6 +67,15 @@
 			renderer.gammaOutput = true;
 			renderer.toneMapping = THREE.ReinhardToneMapping;
 			renderer.toneMappingExposure = 3;
+
+
+			// load textures of cube/skybox (divided into six sides)
+			var textureCube = new THREE.CubeTextureLoader().setPath('models/milky_way/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+
+			// create scene object and add cube/skybox into scene's background
+			scene = new THREE.Scene();
+			scene.background = textureCube;
+
 		}
 
 	</script>
