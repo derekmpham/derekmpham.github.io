@@ -128,6 +128,13 @@
 			camera.updateProjectionMatrix();
 		}
 
+		// render scene and update render as needed
+		function animate() {
+			requestAnimationFrame(animate);
+			controls.update();
+			renderer.render(scene, camera);
+		}
+
 	</script>
 		<a style="position:fixed;bottom:45px;text-align:center;color:#ffffff;font-family:Monospace;font-size:35px;width:100%;" href="https://www.linkedin.com/in/derekmpham/">ENTER</a>
 </body>
