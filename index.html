@@ -116,6 +116,18 @@
 			window.addEventListener('resize', onWindowResize, false);
 		}
 
+		// resizing window
+		function onWindowResize(event) {
+			// update screen width and height
+			SCREEN_WIDTH = window.innerWidth;
+			SCREEN_HEIGHT = window.innerHeight;
+			// update renderer size
+			renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+			// update camera's aspect ratio
+			camera.aspect = SCREEN_WIDTH/SCREEN_HEIGHT;
+			camera.updateProjectionMatrix();
+		}
+
 	</script>
 		<a style="position:fixed;bottom:45px;text-align:center;color:#ffffff;font-family:Monospace;font-size:35px;width:100%;" href="https://www.linkedin.com/in/derekmpham/">ENTER</a>
 </body>
