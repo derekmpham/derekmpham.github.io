@@ -50,7 +50,7 @@
 
 			// create camera
 			camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.01, 1000);
-			camera.position.z = 2;
+			camera.position.z = 1;
 			camera.position.y = 0.5;
 
 			// add TrackballControls to enable camera rotation using mouse
@@ -110,7 +110,9 @@
 
 				// object initially positioned slightly left
 				// group.position.x = -0.45;
+				// move object down
 				group.position.y = -0.5;
+				// move object away
 				group.position.z = -0.5;
 				group.rotation.y = -Math.PI/2;
 				scene.add(group);
