@@ -50,7 +50,8 @@
 
 			// create camera
 			camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.01, 1000);
-			// camera.position.z = 2;
+			camera.position.z = 2;
+			camera.position.y = -1;
 
 			// add TrackballControls to enable camera rotation using mouse
 			controls = new THREE.TrackballControls(camera);
