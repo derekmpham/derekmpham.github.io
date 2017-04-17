@@ -19,11 +19,7 @@
 	<script src="js/TrackballControls.js"></script>
 	<script src="js/OBJLoader.js"></script>
 	<script src="js/RGBELoader.js"></script>
-	<script src="js/HDRCubeTextureLoader.js"></script>
-	<script src="js/PMREMGenerator.js"></script>
-	<script src="js/PMREMCubeUVPacker.js"></script>
 	<script src="js/Detector.js"></script>
-	<script src="js/stats.min.js"></script>
 	<script>
 		
 		// check if browser supports webgl
@@ -32,8 +28,7 @@
 		}
 
 		// set up global variables
-		var statsEnabled = true;
-		var container, stats, loader;
+		var container, loader;
 		var camera, scene, renderer;
 		var controls;
 		var mesh;
@@ -50,7 +45,9 @@
 
 			// create camera
 			camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.01, 1000);
+			// "forward"/"backward" position of camera
 			camera.position.z = 1;
+			// adjust angle of view
 			camera.position.y = 0.25;
 
 			// add TrackballControls to enable camera rotation using mouse
