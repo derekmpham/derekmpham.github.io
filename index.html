@@ -76,7 +76,7 @@
 			scene.background = textureCube;
 
 			// add lights to scene
-			var ambient = new THREE.AmbientLight(0x050505);
+			var ambient = new THREE.AmbientLight(0x404040);
 			scene.add(ambient);
 
 			directionalLight = new THREE.DirectionalLight(0xffffff, 2);
@@ -92,14 +92,12 @@
 			scene.add(pointLight);
 			// scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
 
-			// create gold material for shoe
-			var gold = new THREE.MeshPhongMaterial({color: 0xaa9966, specular: 0xffee00, shininess: 60, envMap: textureCube, combine: THREE.MultiplyOperation});
-
 			// path to gun object models
 			var path = 'models/obj/shoe/';
 			// var path = 'models/obj/gun/';
 
 			var loader = new THREE.OBJLoader();
+			// add gold material to shoe
 			var material = new THREE.MeshPhongMaterial({color: 0xaa9966, specular: 0xffee00, shininess: 60, envMap: textureCube, combine: THREE.MultiplyOperation});
 			// load main gun object and incorporate other gun models ("maps") as a function
 			loader.load(path + 'vans.obj', function (group) {
