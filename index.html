@@ -30,6 +30,7 @@
 		// set up global variables
 		var container, loader;
 		var camera, scene, renderer;
+		var directionalLight, pointLight;
 		var controls;
 		var mesh;
 		var spotLight;
@@ -80,6 +81,10 @@
 
 			directionalLight = new THREE.DirectionalLight(0xffffff, 2);
 			directionalLight.position.set(2, 1.2, 10).normalize();
+			scene.add(directionalLight);
+
+			directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+			directionalLight.position.set(-2, 1.2, -10).normalize();
 			scene.add(directionalLight);
 			// scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
 
