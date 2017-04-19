@@ -86,6 +86,10 @@
 			directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 			directionalLight.position.set(-2, 1.2, -10).normalize();
 			scene.add(directionalLight);
+
+			pointLight = new THREE.PointLight(0xffaa00, 2);
+			pointLight.position.set(2000, 1200, 10000);
+			scene.add(pointLight);
 			// scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
 
 			// path to gun object models
