@@ -92,6 +92,9 @@
 			scene.add(pointLight);
 			// scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
 
+			// create gold material
+			var gold = new THREE.MeshPhongMaterial({color: 0xaa9966, specular: 0xffee00, shininess: 60, envMap: textureCube, combine: THREE.MultiplyOperation});
+
 			// path to gun object models
 			var path = 'models/obj/shoe/';
 			// var path = 'models/obj/gun/';
