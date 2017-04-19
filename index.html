@@ -75,7 +75,13 @@
 			scene.background = textureCube;
 
 			// add lights to scene
-			scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
+			var ambient = new THREE.AmbientLight(0x050505);
+			scene.add(ambient);
+
+			directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+			directionalLight.position.set(2, 1.2, 10).normalize();
+			scene.add(directionalLight);
+			// scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
 
 			// path to gun object models
 			var path = 'models/obj/shoe/';
@@ -110,7 +116,7 @@
 				// object initially positioned slightly left
 				// group.position.x = -0.45;
 				// move object down
-				group.position.y = -2;
+				group.position.y = -0.5;
 				// move object away
 				group.position.z = -1;
 				// group.rotation.y = -Math.PI/2;
