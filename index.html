@@ -47,9 +47,9 @@
 			// create camera
 			camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.01, 1000);
 			// "forward"/"backward" position of camera
-			camera.position.z = 1;
+			camera.position.z = 20;
 			// adjust angle of view
-			camera.position.y = 0.25;
+			camera.position.y = 0.8;
 
 			// add TrackballControls to enable camera rotation using mouse
 			controls = new THREE.TrackballControls(camera);
@@ -69,7 +69,7 @@
 
 
 			// load textures of cube/skybox (divided into six sides)
-			var textureCube = new THREE.CubeTextureLoader().setPath('models/milky_way/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+			var textureCube = new THREE.CubeTextureLoader().setPath('models/park/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
 			// create scene object and add cube/skybox into scene's background
 			scene = new THREE.Scene();
