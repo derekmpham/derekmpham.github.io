@@ -95,7 +95,7 @@
 
 			var loader = new THREE.OBJLoader();
 			// add gold material to shoe
-			var material = new THREE.MeshPhongMaterial({color: 0xFF8C00, specular: 0xffee00, shininess: 50, envMap: textureCube, combine: THREE.MultiplyOperation});
+			var material = new THREE.MeshPhongMaterial({color: 0xFF8C00, specular: 0xffee00, shininess: 80, envMap: textureCube, combine: THREE.MultiplyOperation});
 			// load main gun object and incorporate other gun models ("maps") as a function
 			loader.load(path + 'shoe.obj', function (geometry) {
 
