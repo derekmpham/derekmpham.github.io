@@ -100,37 +100,21 @@
 			// add gold material to shoe
 			var material = new THREE.MeshPhongMaterial({color: 0xFF8C00, specular: 0xffee00, shininess: 50, envMap: textureCube, combine: THREE.MultiplyOperation});
 			// load main gun object and incorporate other gun models ("maps") as a function
-			loader.load(path + 'shoe.obj', function (group) {
+			loader.load(path + 'shoe.obj', function (geometry) {
 			// loader.load(path + 'gun.obj', function (group) {
 				var loader = new THREE.TextureLoader();
 
-				// material.roughness = 1;
-				// material.metalness = 1;
-
-				// material.map = loader.load(path + 'vans.jpg');
-
-				// material.metalnessMap = material.roughnessMap = loader.load(path + 'gun_RM.jpg');
-				// material.normalMap = loader.load(path + 'gun_N.jpg');
-
-				// material.map.wrapS = THREE.RepeatWrapping;
-				// material.roughnessMap.wrapS = THREE.RepeatWrapping;
-				// material.metalnessMap.wrapS = THREE.RepeatWrapping;
-				// material.normalMap.wrapS = THREE.RepeatWrapping;
-
-				group.traverse(function (child) {
+				geometry.traverse(function (child) {
 					if (child instanceof THREE.Mesh) {
 						child.material = material;
 					}
 				});
 
-				// object initially positioned slightly left
-				// group.position.x = -0.45;
-				// move object down
-				group.position.y = -0.5;
+				geometry.position.y = -0.5;
 				// move object away
-				group.position.z = -1;
+				geometry.position.z = 4;
 				// group.rotation.y = -Math.PI/2;
-				scene.add(group);
+				scene.add(geometry);
 			});
 
 			// enable resizing
