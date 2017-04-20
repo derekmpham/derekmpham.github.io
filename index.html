@@ -69,7 +69,7 @@
 
 
 			// load textures of cube/skybox (divided into six sides)
-			var textureCube = new THREE.CubeTextureLoader().setPath('models/park/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+			var textureCube = new THREE.CubeTextureLoader().setPath('models/milky_way/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
 			// create scene object and add cube/skybox into scene's background
 			scene = new THREE.Scene();
@@ -112,7 +112,7 @@
 
 				geometry.position.y = -0.5;
 				// move object away
-				geometry.position.z = -400;
+				geometry.position.z = -1;
 				// group.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 			});
