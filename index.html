@@ -48,12 +48,7 @@
 			camera = new THREE.PerspectiveCamera(90, window.innerWidth/window.innerHeight, 0.01, 1000);
 			// 
 			camera.position.set(0, 20, 20);
-			// "forward"/"backward" position of camera
-			// camera.position.z = 20;
-			// // adjust angle of view
-			// camera.position.y = 0.8;
 
-			// add TrackballControls to enable camera rotation using mouse
 			controls = new THREE.TrackballControls(camera);
 
 			// create renderer, set background color, make responsive, and add to DOM
@@ -114,7 +109,7 @@
 
 				geometry.position.y = -20;
 				// move object away
-				geometry.position.z = -20;
+				geometry.position.z = -40;
 				// group.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 			});
