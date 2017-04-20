@@ -66,7 +66,7 @@
 
 
 			// load textures of cube/skybox (divided into six sides)
-			var textureCube = new THREE.CubeTextureLoader().setPath('models/earth/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+			var textureCube = new THREE.CubeTextureLoader().setPath('models/rebel_blockade/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
 			// create scene object and add cube/skybox into scene's background
 			scene = new THREE.Scene();
@@ -108,10 +108,10 @@
 				});
 
 				// set x (horizontal), y (vertical), and z (forward/backward) position of shoe object
-				geometry.position.set(-10, -20, -20);
+				geometry.position.set(10, -20, -20);
 
 				// rotate object 90 degrees clockwise
-				geometry.rotation.y = Math.2PI/3;
+				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 			});
 
