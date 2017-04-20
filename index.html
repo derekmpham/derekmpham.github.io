@@ -98,7 +98,7 @@
 			var material = new THREE.MeshPhongMaterial({color: 0xFF8C00, specular: 0xffee00, shininess: 50, envMap: textureCube, combine: THREE.MultiplyOperation});
 			// load main gun object and incorporate other gun models ("maps") as a function
 			loader.load(path + 'shoe.obj', function (geometry) {
-			// loader.load(path + 'gun.obj', function (group) {
+
 				var loader = new THREE.TextureLoader();
 
 				geometry.traverse(function (child) {
@@ -110,7 +110,7 @@
 				geometry.position.y = -20;
 				// move object away
 				geometry.position.z = -20;
-				geometry.rotation.y = -Math.PI;
+				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 			});
 
