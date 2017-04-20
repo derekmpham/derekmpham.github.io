@@ -66,7 +66,7 @@
 
 
 			// load textures of cube/skybox (divided into six sides)
-			var textureCube = new THREE.CubeTextureLoader().setPath('models/milky_way/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
+			var textureCube = new THREE.CubeTextureLoader().setPath('models/earth/').load(['px.jpg', 'nx.jpg', 'py.jpg', 'ny.jpg', 'pz.jpg', 'nz.jpg']);
 
 			// create scene object and add cube/skybox into scene's background
 			scene = new THREE.Scene();
@@ -84,7 +84,7 @@
 			directionalLight.position.set(-2, 1.2, -10).normalize();
 			scene.add(directionalLight);
 
-			pointLight = new THREE.PointLight(0xffaa00, 10);
+			pointLight = new THREE.PointLight(0xffaa00, 1);
 			pointLight.position.set(2000, 1200, 10000);
 			scene.add(pointLight);
 			// scene.add(new THREE.HemisphereLight(0x443333, 0x222233, 4));
