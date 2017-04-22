@@ -98,6 +98,9 @@
 
 				var loader = new THREE.TextureLoader();
 
+				// give metallic characteristic to material
+				material.metalness = 1;
+
 				geometry.traverse(function (child) {
 					if (child instanceof THREE.Mesh) {
 						child.material = material;
