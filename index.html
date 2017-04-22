@@ -73,10 +73,10 @@
 			scene.background = textureCube;
 
 			// add lights to scene
-			var ambient = new THREE.AmbientLight(0xeeeeee);
+			var ambient = new THREE.AmbientLight(0xF88500);
 			scene.add(ambient);
 
-			directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+			directionalLight = new THREE.DirectionalLight(0xF88500, 1);
 			directionalLight.position.set(2, 1.2, 10).normalize();
 			scene.add(directionalLight);
 
