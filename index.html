@@ -52,14 +52,14 @@
 
 			// controls = new THREE.TrackballControls(camera);
 
-			controls = new THREE.OrbitControls(camera, renderer.domElement);
-
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
 			renderer.setClearColor(0x202020);
 			renderer.setPixelRatio(window.devicePixelRatio);
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			container.appendChild(renderer.domElement);
+
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 			// assume texture images are gamma-corrected, apply standard tone mapping, and set tone mapping exposure
 			renderer.gammaInput = true;
