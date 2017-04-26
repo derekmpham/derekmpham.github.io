@@ -50,7 +50,9 @@
 			// set x (horizontal), y (vertical), and z (forward/backward) position of camera
 			camera.position.set(0, 10, 40);
 
-			controls = new THREE.TrackballControls(camera);
+			// controls = new THREE.TrackballControls(camera);
+
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
