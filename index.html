@@ -16,7 +16,6 @@
 <body>
 	<div></div>
 	<script src="js/three.js"></script>
-	<script src="js/TrackballControls.js"></script>
 	<script src="js/OrbitControls.js"></script>
 	<script src="js/OBJLoader.js"></script>
 	<script src="js/Detector.js"></script>
@@ -50,8 +49,6 @@
 			
 			// set x (horizontal), y (vertical), and z (forward/backward) position of camera
 			camera.position.set(0, 10, 40);
-
-			// controls = new THREE.TrackballControls(camera);
 
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
