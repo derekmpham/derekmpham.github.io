@@ -30,6 +30,7 @@
 		// set up global variables
 		var container, loader;
 		var camera, scene, renderer;
+		var mouse = new THREE.Vector2(), INTERSECTED;
 		var directionalLight, pointLight;
 		var controls;
 		var mesh;
@@ -50,7 +51,7 @@
 			// set x (horizontal), y (vertical), and z (forward/backward) position of camera
 			camera.position.set(0, 10, 40);
 
-			controls = new THREE.TrackballControls(camera);
+			// controls = new THREE.TrackballControls(camera);
 
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
@@ -58,8 +59,6 @@
 			renderer.setPixelRatio(window.devicePixelRatio);
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			container.appendChild(renderer.domElement);
-
-			// controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 			// assume texture images are gamma-corrected, apply standard tone mapping, and set tone mapping exposure
 			renderer.gammaInput = true;
@@ -74,6 +73,10 @@
 			// create scene object and add cube/skybox into scene's background
 			scene = new THREE.Scene();
 			scene.background = textureCube;
+
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 
 			// add lights to scene
 			var ambient = new THREE.AmbientLight(0xF88500);
