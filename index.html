@@ -91,8 +91,6 @@
 			pointLight.position.set(2000, 1200, 10000);
 			scene.add(pointLight);
 
-			document.addEventListener('mousemove', onDocumentMouseMove, false);
-
 			var loader = new THREE.OBJLoader();
 
 			// add gold material to shoe
@@ -118,6 +116,11 @@
 				// rotate object 90 degrees clockwise
 				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
+
+			var pivot = new THREE.Object3D();
+			pivot.add(geometry);
+			scene.add(pivot);
+
 			});
 
 			// enable resizing
@@ -136,18 +139,11 @@
 			camera.updateProjectionMatrix();
 		}
 
-		function onDocumentMouseMove(event) {
-
-			event.preventDefault();
-
-			mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
-			mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
-		}
-
 		// render scene and update render as needed
 		function animate() {
 			requestAnimationFrame(animate);
 			controls.update();
+			pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
 		}
 
