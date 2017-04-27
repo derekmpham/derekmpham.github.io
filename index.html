@@ -30,7 +30,7 @@
 		// set up global variables
 		var container, loader;
 		var camera, scene, renderer;
-		// var mouse = new THREE.Vector2(), INTERSECTED;
+		var mouse = new THREE.Vector2(), INTERSECTED;
 		var pivot;
 		var directionalLight, pointLight;
 		var controls;
@@ -93,7 +93,7 @@
 			pointLight.position.set(2000, 1200, 10000);
 			scene.add(pointLight);
 
-			 // document.addEventListener('mousemove', onDocumentMouseMove, false);
+			 document.addEventListener('mousemove', onDocumentMouseMove, false);
 
 			var loader = new THREE.OBJLoader();
 
@@ -121,12 +121,12 @@
 				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 
-			pivot = new THREE.Object3D();
-			pivot.add(geometry);
-			scene.add(pivot);
+			// pivot = new THREE.Object3D();
+			// pivot.add(geometry);
+			// scene.add(pivot);
 
 			// controls.target.set(pivot.position.x, pivot.position.y, pivot.position.z);
-			controls.target = pivot.position.clone();
+			// controls.target = pivot.position.clone();
 
 			});
 
@@ -146,19 +146,20 @@
 			camera.updateProjectionMatrix();
 		}
 
-		// function onDocumentMouseMove(event) {
+		function onDocumentMouseMove(event) {
 
-		// 	event.preventDefault();
+			event.preventDefault();
 
-		// 	mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
-		// 	mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
-		// }
+			mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
+			mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
+		}
 
 		// render scene and update render as needed
 		function animate() {
 			requestAnimationFrame(animate);
 			controls.update();
-			// var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
+			camera.lookAt(scene.position);
+			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 			// pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
 		}
