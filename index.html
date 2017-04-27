@@ -125,7 +125,8 @@
 			pivot.add(geometry);
 			scene.add(pivot);
 
-			controls.target.set(pivot.position.x, pivot.position.y, pivot.position.z);
+			// controls.target.set(pivot.position.x, pivot.position.y, pivot.position.z);
+			controls.target = pivot.position.clone();
 
 			});
 
