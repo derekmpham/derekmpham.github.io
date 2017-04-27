@@ -162,6 +162,7 @@
 			// var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 			var vector = new THREE.Vector3(50, -300, -640);
 			camera.lookAt(vector);
+			camera.rotation.y += 0.015;
 			// pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
 		}
