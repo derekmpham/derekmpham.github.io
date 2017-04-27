@@ -51,8 +51,6 @@
 			// set x (horizontal), y (vertical), and z (forward/backward) position of camera
 			camera.position.set(0, 10, 40);
 
-			controls = new THREE.OrbitControls(camera, renderer.domElement);
-
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
 			renderer.setClearColor(0x202020);
@@ -65,6 +63,8 @@
 			renderer.gammaOutput = true;
 			renderer.toneMapping = THREE.ReinhardToneMapping;
 			renderer.toneMappingExposure = 3;
+
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
 			// load textures of cube/skybox (divided into six sides)
