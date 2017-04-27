@@ -17,7 +17,6 @@
 	<div></div>
 	<script src="js/three.js"></script>
 	<script src="js/TrackballControls.js"></script>
-	<script src="js/OrbitControls.js"></script>
 	<script src="js/OBJLoader.js"></script>
 	<script src="js/Detector.js"></script>
 	<script>
@@ -32,7 +31,6 @@
 		var camera, scene, renderer;
 		var directionalLight, pointLight;
 		var controls;
-		var mesh;
 		var spotLight;
 
 		init();
@@ -96,7 +94,7 @@
 			var material = new THREE.MeshPhongMaterial({color: 0xFF8C00, specular: 0xffee00, shininess: 50, envMap: textureCube, combine: THREE.MultiplyOperation});
 			
 			// load shoe object
-			loader.load('models/obj/shoe/reduced_nike_yeezy.obj', function (geometry) {
+			loader.load('models/obj/nike_yeezy/reduced_shoe.obj', function (geometry) {
 
 				var loader = new THREE.TextureLoader();
 
