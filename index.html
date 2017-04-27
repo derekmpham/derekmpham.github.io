@@ -51,6 +51,8 @@
 			// set x (horizontal), y (vertical), and z (forward/backward) position of camera
 			camera.position.set(0, 10, 40);
 
+			controls = new THREE.OrbitControls(camera, renderer.domElement);
+
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
 			renderer.setClearColor(0x202020);
@@ -72,10 +74,6 @@
 			scene = new THREE.Scene();
 			scene.background = textureCube;
 
-			controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
-
 			// add lights to scene
 			var ambient = new THREE.AmbientLight(0xF88500);
 			scene.add(ambient);
@@ -91,6 +89,8 @@
 			pointLight = new THREE.PointLight(0xF88500, 1);
 			pointLight.position.set(2000, 1200, 10000);
 			scene.add(pointLight);
+
+			 document.addEventListener('mousemove', onDocumentMouseMove, false);
 
 			var loader = new THREE.OBJLoader();
 
@@ -140,11 +140,19 @@
 			camera.updateProjectionMatrix();
 		}
 
+		function onDocumentMouseMove(event) {
+
+			event.preventDefault();
+
+			mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
+			mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
+		}
+
 		// render scene and update render as needed
 		function animate() {
 			requestAnimationFrame(animate);
 			controls.update();
-			camera.lookAt(scene.position);
+			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 			// pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
 		}
