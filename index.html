@@ -121,9 +121,9 @@
 				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 
-			// pivot = new THREE.Object3D();
-			// pivot.add(geometry);
-			// scene.add(pivot);
+			pivot = new THREE.Object3D();
+			pivot.add(geometry);
+			scene.add(pivot);
 
 			// controls.target.set(pivot.position.x, pivot.position.y, pivot.position.z);
 			// controls.target = pivot.position.clone();
@@ -158,7 +158,7 @@
 		function animate() {
 			requestAnimationFrame(animate);
 			controls.update();
-			camera.lookAt(scene.position);
+			camera.lookAt(pivot.position);
 			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 			// pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
