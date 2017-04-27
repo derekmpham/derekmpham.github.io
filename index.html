@@ -17,6 +17,7 @@
 	<div></div>
 	<script src="js/three.js"></script>
 	<script src="js/OrbitControls.js"></script>
+	<script src="js/TrackballControls.js"></script>
 	<script src="js/OBJLoader.js"></script>
 	<script src="js/Detector.js"></script>
 	<script>
@@ -29,7 +30,7 @@
 		// set up global variables
 		var container, loader;
 		var camera, scene, renderer;
-		var mouse = new THREE.Vector2(), INTERSECTED;
+		// var mouse = new THREE.Vector2(), INTERSECTED;
 		var pivot;
 		var directionalLight, pointLight;
 		var controls;
@@ -51,6 +52,8 @@
 			// set x (horizontal), y (vertical), and z (forward/backward) position of camera
 			camera.position.set(0, 10, 40);
 
+			controls = new THREE.TrackballControls(camera);
+
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
 			renderer.setClearColor(0x202020);
@@ -64,7 +67,7 @@
 			renderer.toneMapping = THREE.ReinhardToneMapping;
 			renderer.toneMappingExposure = 3;
 
-			controls = new THREE.OrbitControls(camera, renderer.domElement);
+			// controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
 			// load textures of cube/skybox (divided into six sides)
@@ -90,7 +93,7 @@
 			pointLight.position.set(2000, 1200, 10000);
 			scene.add(pointLight);
 
-			 document.addEventListener('mousemove', onDocumentMouseMove, false);
+			 // document.addEventListener('mousemove', onDocumentMouseMove, false);
 
 			var loader = new THREE.OBJLoader();
 
@@ -140,19 +143,19 @@
 			camera.updateProjectionMatrix();
 		}
 
-		function onDocumentMouseMove(event) {
+		// function onDocumentMouseMove(event) {
 
-			event.preventDefault();
+		// 	event.preventDefault();
 
-			mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
-			mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
-		}
+		// 	mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
+		// 	mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
+		// }
 
 		// render scene and update render as needed
 		function animate() {
 			requestAnimationFrame(animate);
 			controls.update();
-			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
+			// var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 			// pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
 		}
