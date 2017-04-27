@@ -91,6 +91,8 @@
 			pointLight.position.set(2000, 1200, 10000);
 			scene.add(pointLight);
 
+			document.addEventListener('mousemove', onDocumentMouseMove, false);
+
 			var loader = new THREE.OBJLoader();
 
 			// add gold material to shoe
@@ -132,6 +134,14 @@
 			// update camera's aspect ratio
 			camera.aspect = SCREEN_WIDTH/SCREEN_HEIGHT;
 			camera.updateProjectionMatrix();
+		}
+
+		function onDocumentMouseMove(event) {
+
+			event.preventDefault();
+
+			mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
+			mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
 		}
 
 		// render scene and update render as needed
