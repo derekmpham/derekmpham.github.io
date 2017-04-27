@@ -38,6 +38,7 @@
 
 		init();
 		animate();
+		render();
 
 		// set up scene
 		function init() {
@@ -147,7 +148,13 @@
 			requestAnimationFrame(animate);
 			controls.update();
 			// pivot.rotation.y += 0.015;
+			render();
+		}
+
+		function render() {
+
 			renderer.render(scene, camera);
+
 		}
 
 	</script>
