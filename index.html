@@ -52,6 +52,7 @@
 
 			controls = new THREE.TrackballControls(camera);
 			controls.target.set(50, -300, -640);
+			controls.enableZoom = false;
 
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
