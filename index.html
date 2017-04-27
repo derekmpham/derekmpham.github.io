@@ -31,14 +31,13 @@
 		var container, loader;
 		var camera, scene, renderer;
 		// var mouse = new THREE.Vector2(), INTERSECTED;
-		// var pivot;
+		var pivot;
 		var directionalLight, pointLight;
 		var controls;
 		var mesh;
 		var spotLight;
 
 		init();
-		render();
 		animate();
 
 		// set up scene
@@ -53,7 +52,7 @@
 			// set x (horizontal), y (vertical), and z (forward/backward) position of camera
 			camera.position.set(0, 10, 40);
 
-			// controls = new THREE.TrackballControls(camera);
+			controls = new THREE.TrackballControls(camera);
 
 			// create renderer, set background color, make responsive, and add to DOM
 			renderer = new THREE.WebGLRenderer({antialias: true});
@@ -69,8 +68,6 @@
 			renderer.toneMappingExposure = 3;
 
 			// controls = new THREE.OrbitControls(camera, renderer.domElement);
-			controls = new THREE.OrbitControls(camera);
-			controls.addEventListener('change', render);
 
 
 			// load textures of cube/skybox (divided into six sides)
@@ -124,11 +121,13 @@
 				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 
-			// pivot = new THREE.Object3D();
-			// pivot.add(geometry);
-			// scene.add(pivot);
+			pivot = new THREE.Object3D();
+			pivot.add(geometry);
+			scene.add(pivot);
 
 			});
+
+			controls.target.set(pivot.x, pivot.y, pivot.z);
 
 			// enable resizing
 			window.addEventListener('resize', onWindowResize, false);
@@ -153,13 +152,6 @@
 		// 	mouse.x = (event.clientX/window.innerWidth) * 2 - 1;
 		// 	mouse.y = -(event.clientY/window.innerHeight) * 2 + 1;
 		// }
-
-		render();
-
-		function render() {
-			renderer.render(scene, camera);
-
-		}
 
 		// render scene and update render as needed
 		function animate() {
