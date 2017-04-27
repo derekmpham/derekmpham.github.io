@@ -30,6 +30,7 @@
 		var container, loader;
 		var camera, scene, renderer;
 		var mouse = new THREE.Vector2(), INTERSECTED;
+		var pivot;
 		var directionalLight, pointLight;
 		var controls;
 		var mesh;
@@ -117,7 +118,7 @@
 				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 
-			var pivot = new THREE.Object3D();
+			pivot = new THREE.Object3D();
 			pivot.add(geometry);
 			scene.add(pivot);
 
