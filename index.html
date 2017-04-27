@@ -125,6 +125,8 @@
 			pivot.add(geometry);
 			scene.add(pivot);
 
+			camera.lookAt(pivot.position);
+
 			// controls.target.set(pivot.position.x, pivot.position.y, pivot.position.z);
 			// controls.target = pivot.position.clone();
 
@@ -158,7 +160,6 @@
 		function animate() {
 			requestAnimationFrame(animate);
 			controls.update();
-			camera.lookAt(pivot.position);
 			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 			// pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
