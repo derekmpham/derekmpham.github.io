@@ -29,8 +29,8 @@
 		// set up global variables
 		var container, loader;
 		var camera, scene, renderer;
-		var mouse = new THREE.Vector2(), INTERSECTED;
-		var pivot;
+		// var mouse = new THREE.Vector2(), INTERSECTED;
+		// var pivot;
 		var directionalLight, pointLight;
 		var controls;
 		var mesh;
@@ -73,8 +73,10 @@
 			scene.background = textureCube;
 
 			controls = new THREE.OrbitControls(camera, renderer.domElement);
+			controls.addEventListener('change', render);
+			controls.enableZoom = false;
 
-			var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
+			// var vector = new THREE.Vector3(mouse.x, mouse.y, 1).unproject(camera);
 
 			// add lights to scene
 			var ambient = new THREE.AmbientLight(0xF88500);
@@ -118,9 +120,9 @@
 				geometry.rotation.y = -Math.PI/2;
 				scene.add(geometry);
 
-			pivot = new THREE.Object3D();
-			pivot.add(geometry);
-			scene.add(pivot);
+			// pivot = new THREE.Object3D();
+			// pivot.add(geometry);
+			// scene.add(pivot);
 
 			});
 
@@ -144,7 +146,7 @@
 		function animate() {
 			requestAnimationFrame(animate);
 			controls.update();
-			pivot.rotation.y += 0.015;
+			// pivot.rotation.y += 0.015;
 			renderer.render(scene, camera);
 		}
 
