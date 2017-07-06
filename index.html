@@ -76,15 +76,15 @@
 			var ambient = new THREE.AmbientLight(0xffffff);
 			scene.add(ambient);
 
-			directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+			directionalLight = new THREE.DirectionalLight(0xffffff, 20);
 			directionalLight.position.set(2, 1.2, 10).normalize();
 			scene.add(directionalLight);
 
-			directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+			directionalLight = new THREE.DirectionalLight(0xffffff, 10);
 			directionalLight.position.set(-2, 1.2, -10).normalize();
 			scene.add(directionalLight);
 
-			pointLight = new THREE.PointLight(0xffffff, 2);
+			pointLight = new THREE.PointLight(0xffffff, 10);
 			pointLight.position.set(2000, 1200, 10000);
 			scene.add(pointLight);
 
