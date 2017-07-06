@@ -66,7 +66,7 @@
 			renderer.toneMappingExposure = 3;
 
 			// load textures of cube/skybox (divided into six sides)
-			var textureCube = new THREE.CubeTextureLoader().setPath('models/cube_texture/pisa/').load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
+			var textureCube = new THREE.CubeTextureLoader().setPath('models/cube_texture/swedish_royal_castle/').load(['px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png']);
 
 			// create scene object and add cube/skybox into scene's background
 			scene = new THREE.Scene();
@@ -91,7 +91,7 @@
 			var loader = new THREE.OBJLoader();
 
 			// add gold material to shoe
-			var material = new THREE.MeshPhongMaterial({color: 0xc0c0c0, specular: 0xffee00, shininess: 50, envMap: textureCube, combine: THREE.MultiplyOperation});
+			var material = new THREE.MeshPhongMaterial({color: 0xc0c0c0, specular: 0xc0c0c0, shininess: 50, envMap: textureCube, combine: THREE.MultiplyOperation});
 			
 			// load shoe object
 			loader.load('models/obj/nike_yeezy/shoe.obj', function (geometry) {
